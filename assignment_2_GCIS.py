@@ -59,101 +59,98 @@ def process_borrowers(File_name):
 
 def calculate_average_books(filename):
     """
-    Calculates the average number of books borrowed by all students with valid entries.
+    This function will calculate the average number of books borrowed by all students with valid entries.
+    It will then print the result (rounded to 2 decimal places).
 
     """
-    try:
-        total_books = 0
-        valid_entries = 0
+    total_books = 0
+    valid_entries = 0
 
-        # Open the CSV file for reading
-        with open(filename, mode='r') as file:
-            reader = csv.reader(file)
+    with open(filename, mode='r') as file: # Open a csv file
+        reader = csv.reader(file)
 
-            for line in reader:
-                if len(line) != 2:
-                    continue  # Skip invalid lines
+        for line in reader:
+            if len(line) != 2:
+                continue  # This skips invalid lines
                 
-                name, books_borrowed = line[0], line[1]
+            name, books_borrowed = line[0], line[1]
                 
-                try:
-                    # Convert books_borrowed to an integer
-                    borrowed = int(books_borrowed)
+            try:
+            # Convert books_borrowed to an integer
+                borrowed = int(books_borrowed)
                     
-                    if borrowed >= 0:  # Only consider valid entries
-                        total_books += borrowed
-                        valid_entries += 1
-                except ValueError:
-                    continue  # Skip non-numeric values
+                if borrowed >= 0:  # Take into account valid entries only
+                    total_books += borrowed
+                    valid_entries += 1
+            except ValueError:
+                continue  # Non-numeric value skipped
 
-        # Calculate and print the average
-        if valid_entries > 0:
-            average = total_books / valid_entries
-            print(f"Average number of books borrowed: {average:.2f}")
-        else:
-            print("No valid entries to calculate the average.")
-    except FileNotFoundError:
-        print(f"Error: File '{filename}' not found.")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+    if valid_entries > 0:
+        average = total_books / valid_entries # Calculate and print the average
+        print(f"Average number of books borrowed: {average:.2f}") 
+    else:
+        print("No valid entries to calculate the average.")
+
 
 
 def count_over_limit(filename):
     """
-    Counts the number of students who borrowed more than 3 books.
+    This function will count the number of students that borrowed more than 3 books.
+    It will then Print the total count.
 
     """
-    try:
-        count = 0
+    count = 0
 
-        # Open the CSV file for reading
-        with open(filename, mode='r') as file:
-            reader = csv.reader(file)
+    with open(filename, mode='r') as file: # Open a csv file
+        reader = csv.reader(file)
 
-            for line in reader:
-                if len(line) != 2:
-                    continue  # Skip invalid lines
+        for line in reader:
+            if len(line) != 2:
+                continue  # This skips invalid lines
                 
-                name, books_borrowed = line[0], line[1]
+            name, books_borrowed = line[0], line[1]
                 
-                try:
-                    # Convert books_borrowed to an integer
-                    borrowed = int(books_borrowed)
+            try:
+                borrowed = int(books_borrowed) # Convert books_borrowed to an integer
                     
-                    if borrowed > 3:  # Count students over the limit
-                        count += 1
-                except ValueError:
-                    continue  # Skip non-numeric values
+                if borrowed > 3:  # count the number of students that borrowed more than 3 books
+                    count += 1 #increase the count by 1
+            except ValueError:
+                continue  # Skip non-numeric values
 
-        # Print the total count
-        print(f"Number of students over the limit: {count}")
-    except FileNotFoundError:
-        print(f"Error: File '{filename}' not found.")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+    print(f"Number of students over the limit: {count}") # Print the total count
 
 
 def main():
     """
-    Main function to prompt the user for a filename and call all other functions.
+    This is the Main function  - 
+    It will also request the file name from the user
+    Use a while loop to retry until a valid file is provided.
+    
+    Call all the above functions: 
+    1. process_borrowers()  
+    2. calculate_average_books()  
+    3. count_over_limit()
 
     """
     while True:
-        # Prompt the user for a filename
-        filename = input("Enter the filename: ")
-        
-        try:
-            # Check if the file exists by attempting to open it
-            with open(filename, mode='r'):
-                pass
-            
-            # Call all the functions
-            process_borrowers(filename)
-            calculate_average_books(filename)
-            count_over_limit(filename)
-            break  # Exit the loop if everything succeeds
-        except FileNotFoundError:
-            print(f"Error: File '{filename}' not found. Please try again.")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+
+        file = input("Enter the file name: ") # requesting file name that is needed
+
+        try:  # Check if the file exists by attempting to open it
+
+            with open(file, mode = "r"): # oppening file to read it's information
+
+                process_borrowers(file)
+                calculate_average_books(file)
+                count_over_limit(file)
+
+                break
+
+        except:
+            print("Error occured, please ensure the file name is written correctly")
             break
+        
+
+if __name__ == "__main__":
+    main()
