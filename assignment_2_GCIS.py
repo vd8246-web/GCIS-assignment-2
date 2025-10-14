@@ -4,9 +4,9 @@ Karim -
 Khamza - 
 
 Tasks finished my teammates
-Karim - 
-Vaibhav - 
-Khamza - 
+Karim - Finished Task 1 and Task 2
+Vaibhav - Finished Task 3 and Task 4
+Khamza - Finished Task 5, docstring, and documentation
 """
 
 
@@ -15,57 +15,47 @@ import csv
 
 def check_limit(borrowed):
     """
-    Determines the borrowing status based on the number of books borrowed.
+    This function will determine what the borrowing status is based
+    on the number of book ordered.
+
+    The function is called check_limit and use if,elif, and else statements
 
     """
-    if borrowed < 0:
-        return "Error: Invalid number of books"
-    elif borrowed <= 3:
+    if borrowed <= 3: #condition one - If borrowed ≤ 3 → Return "Within limit"
         return "Within limit"
-    elif borrowed <= 6:
+    elif borrowed > 3 and borrowed <= 6: #condition two - If borrowed > 3 and ≤ 6 → Return "Over limit: Fine $5"
         return "Over limit: Fine $5"
-    else:
+    elif borrowed > 6: #condition three - If borrowed > 6 → Return "Over limit: Fine $10"
         return "Over limit: Fine $10"
+    else: #condition four - If borrowed < 0 → Return "Error: Invalid number of books"
+        return "Error: invalid number of books"
 
 
-def process_borrowers(filename):
+
+def process_borrowers(File_name):
     """
-    Processes a CSV file containing student names and the number of books borrowed.
-    For each student, determines their borrowing status and prints it.
+    This function will process a CSV file (borrowers.csv) to check the students name and record
+    We can find out of the borrowing status of the student and show it.
 
     """
-    try:
-        # Open the CSV file for reading
-        with open(filename, mode='r') as file:
-            reader = csv.reader(file)
-            
-            # Process each line in the file
-            for line in reader:
-                if len(line) != 2:
-                    print("Error: Invalid line format")
-                    continue
-                
-                name, books_borrowed = line[0], line[1]
-                
+    with open(File_name, "r") as f: # Read a csv file
+        csv_reader = csv.reader(f)
+        next(csv_reader)
+        
+        for line in csv_reader:  # Use a loop to process the file line by line.
+                name = line[0]
                 try:
-                    # Convert books_borrowed to an integer
-                    borrowed = int(books_borrowed)
-                    
-                    # Call check_limit to determine the borrowing status
-                    status = check_limit(borrowed)
-                    print(f"{name}: {status}")
+                    books_borrowed = int(line[1]) # Important to convert books_borrowed to an integer
+                    status = check_limit(books_borrowed) # Call check_limit() to determine the status.
+                    print(f"{name} borrowed {books_borrowed} books: {status}") #Print the student’s name and their status.
                 except ValueError:
-                    # Handle non-numeric values for books_borrowed
-                    print(f"Error: Non-numeric value for {name}")
-    except FileNotFoundError:
-        print(f"Error: File '{filename}' not found.")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+                    print(f"Error: Non-numeric value for {name}") # If Value is not a valid integer, print an error message: "Error: Non-numeric value for <Name>
 
 
-# Example usage:
-# Save the CSV data in a file named "borrowers.csv" and call the function:
-# process_borrowers("borrowers.csv")
+
+# Example
+# Run the program with the CSV file
+#process_borrowers("BooksBorrowed.csv")
 
 def calculate_average_books(filename):
     """
