@@ -4,9 +4,9 @@ Karim -
 Khamza - 
 
 Tasks finished my teammates
-Karim - Finished Task1 and Task2
-Vaibhav - Finished Task3 and Task4
-Khamza - Finished Task5 and Main function and reviewed doctsrings and comments
+Karim - 
+Vaibhav - 
+Khamza - 
 """
 
 
@@ -17,15 +17,6 @@ def check_limit(borrowed):
     """
     Determines the borrowing status based on the number of books borrowed.
 
-    Args:
-        borrowed (int): The number of books borrowed by a student.
-
-    Returns:
-        str: A message indicating the borrowing status:
-             - "Within limit" if borrowed ≤ 3
-             - "Over limit: Fine $5" if 4 ≤ borrowed ≤ 6
-             - "Over limit: Fine $10" if borrowed > 6
-             - "Error: Invalid number of books" if borrowed < 0
     """
     if borrowed < 0:
         return "Error: Invalid number of books"
@@ -42,11 +33,6 @@ def process_borrowers(filename):
     Processes a CSV file containing student names and the number of books borrowed.
     For each student, determines their borrowing status and prints it.
 
-    Args:
-        filename (str): The name of the CSV file to process.
-
-    Returns:
-        None
     """
     try:
         # Open the CSV file for reading
@@ -85,11 +71,6 @@ def calculate_average_books(filename):
     """
     Calculates the average number of books borrowed by all students with valid entries.
 
-    Args:
-        filename (str): The name of the CSV file to process.
-
-    Returns:
-        None
     """
     try:
         total_books = 0
@@ -131,11 +112,6 @@ def count_over_limit(filename):
     """
     Counts the number of students who borrowed more than 3 books.
 
-    Args:
-        filename (str): The name of the CSV file to process.
-
-    Returns:
-        None
     """
     try:
         count = 0
@@ -171,11 +147,6 @@ def main():
     """
     Main function to prompt the user for a filename and call all other functions.
 
-    Args:
-        None
-
-    Returns:
-        None
     """
     while True:
         # Prompt the user for a filename
@@ -196,8 +167,3 @@ def main():
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
             break
-
-
-# Example usage:
-# Uncomment the following line to run the program:
-# main()
