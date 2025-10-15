@@ -1,7 +1,7 @@
 """
 Vaibhav - 753003527
 Karim - 431002994
-Khamza - kz7991
+Khamza - 413002459
 
 
 *********Student Manifesto*********
