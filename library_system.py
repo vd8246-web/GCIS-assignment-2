@@ -1,12 +1,37 @@
 """
 Vaibhav - 753003527
-Karim - 
-Khamza - 
+Karim - 431002994
+Khamza - kz7991
 
-Tasks finished my teammates
-Karim - Finished Task 1 and Task 2
-Vaibhav - Finished Task 3 and Task 4
-Khamza - Finished Task 5, docstring, and documentation
+
+*********Student Manifesto*********
+
+Karim 
+- Worked on creating the function check_limit()
+- Worked on creating the function process_borrowers()
+- Handled exceptions for non-numeric values in process_borrowers()
+- Tested the functions with sample data
+
+
+
+Vaibhav
+- Worked on creating the function calculate_average_books()
+- worked on creating the function count_over_limit()
+- Handled exceptions for non-numeric values in both functions
+- Tested the functions with sample data
+
+
+
+Khamza
+- Assiteed in the development of a logic flow for Tasks 1-4
+- Worked on creating the main function
+- Handled file input and exceptions for file not found
+- Integrated all functions and ensured smooth execution
+- Finished all the docstrings and comments for the entrie code
+- Tested the entire program with sample data
+
+
+
 """
 
 
@@ -51,10 +76,6 @@ def process_borrowers(File_name):
                     print(f"Error: Non-numeric value for {name}") # If Value is not a valid integer, print an error message: "Error: Non-numeric value for <Name>
 
 
-
-# Run the program with the CSV file
-#process_borrowers("borrowers.csv")
-
 def calculate_average_books(filename):
     """
     This function will calculate the average number of books borrowed by all students with valid entries.
@@ -68,14 +89,11 @@ def calculate_average_books(filename):
         reader = csv.reader(file)
 
         for line in reader:
-            if len(line) != 2:
-                continue  # This skips invalid lines
                 
             name, books_borrowed = line[0], line[1]
                 
             try:
-            # Convert books_borrowed to an integer
-                borrowed = int(books_borrowed)
+                borrowed = int(books_borrowed) # Convert books_borrowed to an integer
                     
                 if borrowed >= 0:  # Take into account valid entries only
                     total_books += borrowed
@@ -103,8 +121,6 @@ def count_over_limit(filename):
         reader = csv.reader(file)
 
         for line in reader:
-            if len(line) != 2:
-                continue  # This skips invalid lines
                 
             name, books_borrowed = line[0], line[1]
                 
@@ -143,7 +159,7 @@ def main():
 
                 break #Exit the loop once the file name is correct
 
-        except:
+        except FileNotFoundError: #Error if the file is not correctly entered 
             print("Error occured, please ensure the file name is written correctly")
         
 
