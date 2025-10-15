@@ -10,7 +10,6 @@ Khamza - Finished Task 5, docstring, and documentation
 """
 
 
-
 import csv
 
 def check_limit(borrowed):
@@ -21,7 +20,7 @@ def check_limit(borrowed):
     The function is called check_limit and use if,elif, and else statements
 
     """
-    if borrowed <= 3: #condition one - If borrowed ≤ 3 → Return "Within limit"
+    if borrowed <= 3 and borrowed > 0: #condition one - If borrowed ≤ 3 → Return "Within limit"
         return "Within limit"
     elif borrowed > 3 and borrowed <= 6: #condition two - If borrowed > 3 and ≤ 6 → Return "Over limit: Fine $5"
         return "Over limit: Fine $5"
@@ -53,9 +52,8 @@ def process_borrowers(File_name):
 
 
 
-# Example
 # Run the program with the CSV file
-#process_borrowers("BooksBorrowed.csv")
+#process_borrowers("borrowers.csv")
 
 def calculate_average_books(filename):
     """
@@ -134,22 +132,19 @@ def main():
 
     """
     while True:
-
         file = input("Enter the file name: ") # requesting file name that is needed
 
         try:  # Check if the file exists by attempting to open it
-
             with open(file, mode = "r"): # oppening file to read it's information
 
                 process_borrowers(file)
                 calculate_average_books(file)
                 count_over_limit(file)
 
-                break
+                break #Exit the loop once the file name is correct
 
         except:
             print("Error occured, please ensure the file name is written correctly")
-            break
         
 
 if __name__ == "__main__":
